@@ -1,5 +1,6 @@
-import React from 'react'
-import './ukazatel-uspechu.css'
+import React from 'react';
+import { useState } from 'react';
+import './ukazatel-uspechu.css';
 
 // Zadání 1: Použij prop `barva` ve style atributu.
 // Zadání 2: Přidej komponentě číselný stav od nuly do sta, který bude reprezentovat postup.
@@ -7,21 +8,28 @@ import './ukazatel-uspechu.css'
 // Zadání 4. Nastav prvku `ukazatel-uspechu__postup` šířku podle stavové proměnné.
 
 const UkazatelPokroku = ({ barva }) => {
+  const [ciselnyStav, setCiselnyStav] = useState(0);
+
   return (
     <div className="ukazatel-uspechu">
       <div className="ukazatel-uspechu__ramecek">
         <div
           className="ukazatel-uspechu__postup"
           style={{
-            width: '40%',
-            backgroundColor: 'red',
+            width: `${ciselnyStav}%`,
+            backgroundColor: barva,
           }}
         ></div>
       </div>
-      <button>postoupit o 10 %</button>
+      <button
+        onClick={() => setCiselnyStav(ciselnyStav + 10)}
+        disabled={ciselnyStav === 100}
+      >
+        postoupit o 10 %
+      </button>
     </div>
-  )
-}
+  );
+};
 
 export const Uloha7 = () => {
   return (
@@ -30,5 +38,5 @@ export const Uloha7 = () => {
       <UkazatelPokroku barva="green" />
       <UkazatelPokroku barva="purple" />
     </>
-  )
-}
+  );
+};
